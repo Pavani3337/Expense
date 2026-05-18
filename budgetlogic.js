@@ -4,9 +4,20 @@ document.getElementById("expenseHistory");
 const totalBalance =
 document.getElementById("totalBalance");
 
+let expenses =
+JSON.parse(
+    localStorage.getItem("expenses")
+) || [];
+
 let total = 0;
 
-let expenses = [];
+expenses.forEach(expense => {
+
+    total += expense.amount;
+
+});
+
+updateUI();
 
 function addExpense() {
 
@@ -46,6 +57,8 @@ function addExpense() {
     expenses.push(expense);
 
     total += Number(amount);
+
+    saveExpenses();
 
     updateUI();
 
@@ -103,7 +116,21 @@ function deleteExpense(id) {
     expenses =
     expenses.filter(item => item.id !== id);
 
+    saveExpenses();
+
     updateUI();
+
+}
+
+function saveExpenses() {
+
+    localStorage.setItem(
+
+        "expenses",
+
+        JSON.stringify(expenses)
+
+    );
 
 }
 
