@@ -1,3 +1,5 @@
+alert("JS Connected Successfully");
+
 const expenseHistory =
 document.getElementById("expenseHistory");
 
